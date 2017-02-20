@@ -12,7 +12,6 @@ public class Palindrome {
         countLetters(input, letterCounts);
         Character middle = null;
         boolean haveMiddle = input.length() % 2 != 0;
-        StringBuilder result = new StringBuilder();
         StringBuilder resultLeftPart = new StringBuilder();
         for (Map.Entry<Character, Integer> letterCount : letterCounts.entrySet()) {
             Character currentLetter = letterCount.getKey();
@@ -26,7 +25,7 @@ public class Palindrome {
             }
             resultLeftPart = appendCurrentLetter(resultLeftPart, currentLetter, currentLetterCount);
         }
-        result = buildNewPalindrome(middle, result, resultLeftPart);
+        StringBuilder result = buildNewPalindrome(middle, resultLeftPart);
         System.out.println(result);
     }
 
@@ -38,7 +37,8 @@ public class Palindrome {
     }
 
 
-    private static StringBuilder buildNewPalindrome(Character middle, StringBuilder result, StringBuilder resultLeftPart) {
+    private static StringBuilder buildNewPalindrome(Character middle, StringBuilder resultLeftPart) {
+        StringBuilder result = new StringBuilder();
         result = result.append(resultLeftPart);
         if (middle != null) {
             result = result.append(middle);
